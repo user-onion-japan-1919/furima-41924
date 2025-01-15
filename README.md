@@ -47,8 +47,8 @@ has_one :order
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| user_id            | referenses | null: false,foreign_key: true |
-| item_id            | referenses | null: false,foreign_key: true |
+| user               | referenses | null: false,foreign_key: true |
+| item               | referenses | null: false,foreign_key: true |
 
 ### Association
 
@@ -67,7 +67,7 @@ has_one :address
 | street_address                   | string     | null: false |
 | building_name                    | string     |             |
 | phone_number                     | string     | null: false |
-| order_id                         | referenses | null: false,foreign_key: true |
+| order                            | referenses | null: false,foreign_key: true |
 
 
 
