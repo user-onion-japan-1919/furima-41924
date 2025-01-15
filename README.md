@@ -14,7 +14,7 @@
 | last_name                     | string | null: false |
 | last_name_furigana            | string | null: false |
 | date_of_birth                 | date   | null: false |
-| order                         | referenses | null: false,foreign_key: true |
+
 
 
 ### Association
@@ -36,7 +36,7 @@ has_many :orders
 | shipping_day_id    | integer    | null: false |
 | price              | integer    | null: false |
 | user               | referenses | null: false,foreign_key: true |
-| order              | referenses | null: false,foreign_key: true |
+
 
 
 ### Association
@@ -47,7 +47,8 @@ has_one :order
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-
+| user_id            | referenses | null: false,foreign_key: true |
+| item_id            | referenses | null: false,foreign_key: true |
 
 ### Association
 
@@ -66,7 +67,7 @@ has_one :address
 | street_address                   | string     | null: false |
 | building_name                    | string     |             |
 | phone_number                     | string     | null: false |
-
+| order_id                         | referenses | null: false,foreign_key: true |
 
 
 
