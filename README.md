@@ -10,8 +10,11 @@
 | email                         | string | null: false, unique: true |
 | encrypted_password            | string | null: false |
 | first_name                    | string | null: false |
+| first_name_furigana           | string | null: false |
 | last_name                     | string | null: false |
+| last_name_furigana            | string | null: false |
 | date_of_birth                 | date   | null: false |
+| order                         | referenses | null: false,foreign_key: true |
 
 
 ### Association
@@ -33,24 +36,24 @@ has_many :orders
 | shipping_day_id    | integer    | null: false |
 | price              | integer    | null: false |
 | user               | referenses | null: false,foreign_key: true |
+| order              | referenses | null: false,foreign_key: true |
 
 
 ### Association
-belongs_to :users
-has_one :orders
+belongs_to :user
+has_one :order
 
 ## orders テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| order              | referenses | null: false,foreign_key: true |
 
 
 ### Association
 
-belongs_to :users
-belongs_to :items
-has_one :addresses
+belongs_to :user
+belongs_to :item
+has_one :address
 
 
 ## addresses テーブル
@@ -63,8 +66,7 @@ has_one :addresses
 | street_address                   | string     | null: false |
 | building_name                    | string     |             |
 | phone_number                     | string     | null: false |
-| user                             | referenses | null: false,foreign_key: true |
-| item                             | referenses | null: false,foreign_key: true |
+
 
 
 
