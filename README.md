@@ -29,8 +29,8 @@ has_many :orders
 | category_id        | integer    | null: false |
 | condition_id       | integer    | null: false |
 | shipping_fee_id    | integer    | null: false |
-| shipping_origin_id | integer    | null: false |
-| shipping_days_id   | integer    | null: false |
+| prefecture_id      | integer    | null: false |
+| shipping_day_id    | integer    | null: false |
 | price              | integer    | null: false |
 | user               | referenses | null: false,foreign_key: true |
 
@@ -43,8 +43,7 @@ has_one :orders
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| user               | referenses | null: false,foreign_key: true |
-| item               | referenses | null: false,foreign_key: true |
+| order              | referenses | null: false,foreign_key: true |
 
 
 ### Association
@@ -58,15 +57,12 @@ has_one :addresses
 
 | Column                           | Type       | Options     |
 | -------------------------------- | ---------- | ----------- |
-| encrypted_card_number            | string     | null: false |
-| encrypted_card_expiry_date       | string     | null: false |
-| encrypted_security_code          | string     | null: false |
 | post_code                        | string     | null: false |
-| prefecture_id                    | string     | null: false |
+| prefecture_id                    | integer    | null: false |
 | city_ward_town_village           | string     | null: false |
 | street_address                   | string     | null: false |
-| building_name                    | string     | null: false |
-| encrypted_phone_number           | string     | null: false |
+| building_name                    | string     |             |
+| phone_number                     | string     | null: false |
 | user                             | referenses | null: false,foreign_key: true |
 | item                             | referenses | null: false,foreign_key: true |
 
