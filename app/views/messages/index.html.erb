@@ -1,4 +1,0 @@
-<div class="wrapper">
-  <%= render "side_bar" %>
-  <%= render "main_chat" %>
-</div>
