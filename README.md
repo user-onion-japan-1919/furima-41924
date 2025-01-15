@@ -1,24 +1,61 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# テーブル設計
 
-* Ruby version
+## users テーブル
 
-* System dependencies
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email              | string | null: false, unique: true |
+| password           | string | null: false |
+| nickname           | string | null: false |
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+### Association
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## items テーブル
 
-* Deployment instructions
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| item-image         | string     | null: false |
+| item-name          | string     | null: false |
+| item-description   | string     | null: false |
+| item-category      | string     | null: false |
+| item-condition     | string     | null: false |
+| user               | referenses | null: false,foreign_key: true |
 
-* ...
+
+### Association
+
+## orders テーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| content            | string     | null: false |
+| user               | referenses | null: false,foreign_key: true |
+| item               | referenses | null: false,foreign_key: true |
+
+
+### Association
+
+## purchases テーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| price              | text       | null: false |
+| fee                | references | null: false,foreign_key: true |
+| profit             | references | null: false,foreign_key: true |
+| item               | referenses | null: false,foreign_key: true |
+
+### Association
+
+## shipping-addresses テーブル
+
+| Column                  | Type       | Options     |
+| ----------------------- | ---------- | ----------- |
+| shipping-fee            | text       | null: false |
+| shipping-origin-region  | references | null: false,foreign_key: true |
+| days-until-shipping     | references | null: false,foreign_key: true |
+| item                    | referenses | null: false,foreign_key: true |
