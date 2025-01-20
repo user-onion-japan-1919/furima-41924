@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth
+  before_action :basic_auth, except: [:new, :update] # 新規登録とログインを除外
 
   private
 
