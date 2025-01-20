@@ -35,15 +35,53 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
+      it 'emailが他のユーザーと重複していると登録できない' do
+        existing_user = User.create(
+          nickname: 'existinguser',
+          email: 'test@example.com',
+          password: 'test123',
+          password_confirmation: 'test123',
+          last_name: '山田',
+          first_name: '太郎',
+          last_name_furigana: 'ヤマダ',
+          first_name_furigana: 'タロウ',
+          date_of_birth: '1990-01-01'
+        )
+
+        @user.email = 'test@example.com' # 重複したemailを設定
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email has already been taken')
+      end
+
+      it 'emailには「@」を含む必要がある' do
+        @user.email = 'testexample.com' # 「@」が含まれていない
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid. Must contain "@"')
+      end
+
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
-      it 'passwordが英数字混合でないと登録できない' do
+      it 'passwordが半角数字のみの場合は登録できない' do
+        @user.password = '123456' # 数字のみ
+        @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+      end
+
+      it 'passwordが半角英字のみの場合は登録できない' do
         @user.password = 'password' # 英字のみ
         @user.password_confirmation = 'password'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+      end
+
+      it 'passwordが全角の場合は登録できない' do
+        @user.password = 'パスワード' # 全角文字
+        @user.password_confirmation = 'パスワード'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
       end
