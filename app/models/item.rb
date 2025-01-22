@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: { message: "can't be blank" }
   validates :shipping_day_id, presence: { message: "can't be blank" }
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
 
   # ActiveHashの関連付け
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -15,11 +15,11 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :shipping_fee
   belongs_to :prefecture
-  belongs_to :shipping_day
+  # belongs_to :shipping_day
 
-  belongs_to :user
-  has_one :order
-  has_one_attached :image
+  # belongs_to :user
+  # has_one :order
+  # has_one_attached :image
 
   # 販売手数料を計算（10%の手数料として設定）
   def sales_fee
