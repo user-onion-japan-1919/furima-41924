@@ -5,11 +5,10 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @item,url:items_path, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+
+    <% render 'shared/error_messages', model: f.object %>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -46,19 +45,32 @@
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
+
+        <!-- カテゴリー -->
         <div class="weight-bold-text">
           カテゴリー
           <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select :category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"} %>
-        <div class="weight-bold-text">
-          商品の状態
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select :condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"} %>
-      </div>
-    </div>
-    <%# /商品の詳細 %>
+</div>
+    <%= f.select :category_id, 
+      [['---', 0], ['メンズ', 1], ['レディース', 2], ['ベビー・キッズ', 3], ['インテリア・住まい・小物', 4], 
+       ['本・音楽・ゲーム', 5], ['おもちゃ・ホビー・グッズ', 6], ['家電・スマホ・カメラ', 7], 
+       ['スポーツ・レジャー', 8], ['ハンドメイド', 9], ['その他', 10]],
+      { prompt: '---' }, 
+      { class: "select-box", id: "item-category" } %>
+
+      <!-- 商品の状態 -->
+    <div class="weight-bold-text">
+      商品の状態
+      <span class="indispensable">必須</span>
+         </div>
+    <%= f.select :condition_id, 
+      [['---', 0], ['新品・未使用', 1], ['未使用に近い', 2], ['目立った傷や汚れなし', 3], 
+       ['やや傷や汚れあり', 4], ['傷や汚れあり', 5], ['全体的に状態が悪い', 6]],
+      { prompt: '---' }, 
+      { class: "select-box", id: "item-sales-status" } %>
+  </div>
+</div>
+
 
     <%# 配送について %>
     <div class="items-detail">
@@ -67,16 +79,34 @@
         <a class="question" href="#">?</a>
       </div>
       <div class="form">
+
+            <!-- 配送料の負担 -->
         <div class="weight-bold-text">
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :shipping_fee_id, ShippingFee.all, :id, :name, {}, { class: "select-box", id: "item-shipping-fee-status" } %>
+         <%= f.select :shipping_fee_id, 
+      [['---', 0], ['着払い(購入者負担)', 1], ['送料込み(出品者負担)', 2]],
+      { prompt: '---' }, 
+      { class: "select-box", id: "item-shipping-fee-status" } %>
+  </div>
+</div>
+
+            <!-- 発送元の地域 -->
+<div class="weight-bold-text">
+  発送元の地域
+  <span class="indispensable">必須</span>
+</div>
+<%= f.select :prefecture_id, options_for_select(['---'] + Prefecture.pluck(:name)), { prompt: "---" }, { class: "select-box", id: "item-prefecture" } %>
+
+            <!-- 発送までの日数 -->
         <div class="weight-bold-text">
-          発送元の地域
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, { class: "select-box", id: "item-prefecture" } %>
+  発送までの日数
+  <span class="indispensable">必須</span>
+</div>
+<%= f.select :delivery_time_id, options_for_select(['---', '1~2日で発送', '2~3日で発送', '4~7日で発送']), {}, { class: "select-box", id: "item-scheduled-delivery" } %>
+
+
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
