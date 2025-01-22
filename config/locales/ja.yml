@@ -1,4 +1,11 @@
 ja:
-  time:
-    formats:
-      default: "%Y/%m/%d %H:%M:%S"
+  activerecord:
+    errors:
+    
+      models:
+        item:
+          attributes:
+            image:
+              blank: "can't be blank"
+            price:
+              not_a_number: "Price is not a number"

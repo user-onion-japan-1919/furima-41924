@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     # 全てのアイテムを取得
     @items = Item.all
@@ -26,7 +28,8 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :text, :category_id, :condition_id, :shipping_fee_id, :prefecture_id,
-                                 :delivery_time_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :condition_id,
+                                 :shipping_fee_id, :prefecture_id, :shipping_day_id,
+                                 :price, :image).merge(user_id: current_user.id)
   end
 end

@@ -19,10 +19,6 @@
   </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
 
-
-
-
-
   <%# FURIMAが選ばれる3つの理由部分 %>
   <div class='select-reason-contents'>
     <h2 class='title'>
@@ -127,23 +123,19 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <div class="subtitle" >
+    <div class="subtitle">
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-       <% if @items.present? %>
+      <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
             <%= link_to item_path(item) do %>
               <div class='item-img-content'>
-                <%= image_tag item.image_url, class: "item-img" %>
+                <%= image_tag item.image, class: "item-img" %>
                 <% if item.sold_out? %>
                   <div class='sold-out'>
-                   <span>Sold Out!!</span>
+                    <span>Sold Out!!</span>
                   </div>
                 <% end %>
               </div>
@@ -152,7 +144,11 @@
                   <%= item.name %>
                 </h3>
                 <div class='item-price'>
-                  <span><%= item.price %>円<br><%= item.shipping_fee_status %></span>
+                  <span>
+                    <%= item.price %>円<br>
+                    手数料: <%= item.sales_fee %>円<br>
+                    利益: <%= item.profit %>円<br>
+                    配送料: <%= item.shipping_fee_status %>
                   <div class='star-btn'>
                     <%= image_tag "star.png", class: "star-icon" %>
                     <span class='star-count'>0</span>
@@ -162,9 +158,6 @@
             <% end %>
           </li>
         <% end %>
-
-
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <% else %>
         <li class='list'>
           <%= link_to '#' do %>
