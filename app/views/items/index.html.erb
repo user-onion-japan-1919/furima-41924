@@ -137,7 +137,9 @@
         <%= image_tag item.image.attached? ? url_for(item.image) : asset_path("item-sample.png"), class: "item-img" %>
 
         <%# 売却済み商品の場合、"sold out" を表示 %>
-        
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
 
 
 
@@ -181,8 +183,7 @@
 
 
 <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
 
     </ul>
   </div>
