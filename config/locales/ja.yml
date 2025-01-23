@@ -1,11 +1,27 @@
 ja:
   activerecord:
     errors:
-    
       models:
         item:
           attributes:
             image:
               blank: "can't be blank"
+            name:
+              blank: "can't be blank"
+            description:
+              blank: "can't be blank"
             price:
-              not_a_number: "Price is not a number"
+              blank: "can't be blank"
+              not_a_number: "is not a number" # 修正部分
+              greater_than_or_equal_to: "は300以上である必要があります" # 修正部分
+              less_than_or_equal_to: "は9,999,999以下である必要があります" # 修正部分
+            category_id:
+              blank: "can't be blank"
+            condition_id:
+              blank: "can't be blank"
+            shipping_fee_id:
+              blank: "can't be blank"
+            prefecture_id:
+              blank: "can't be blank"
+            shipping_day_id:
+              blank: "can't be blank"

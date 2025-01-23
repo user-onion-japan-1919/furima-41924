@@ -57,13 +57,14 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "---" }, { class: "select-box", id: "item-category" } %>
-
+        <%= f.collection_select :category_id, Category.all, :id, :name, {}, { class: "select-box", id: "item-category" } %>
+<%= @item.errors[:category_id].present? ? content_tag(:div, @item.errors[:category_id].first, class: 'error-message') : '' %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :condition_id, Condition.all, :id, :name, { prompt: "---" }, { class: "select-box", id: "item-sales-status" } %>
+        <%= f.collection_select :condition_id, Condition.all, :id, :name, {}, { class: "select-box", id: "item-sales-status" } %>
+  <%= @item.errors[:condition_id].present? ? content_tag(:div, @item.errors[:condition_id].first, class: 'error-message') : '' %>
       </div>
     </div>
 
@@ -77,19 +78,20 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :shipping_fee_id, ShippingFee.all, :id, :name, { prompt: "---" }, { class: "select-box", id: "item-shipping-fee-status" } %>
-
+        <%= f.collection_select :shipping_fee_id, ShippingFee.all, :id, :name, {}, { class: "select-box", id: "item-shipping-fee-status" } %>
+<%= @item.errors[:shipping_fee_id].present? ? content_tag(:div, @item.errors[:shipping_fee_id].first, class: 'error-message') : '' %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, { class: "select-box", id: "item-prefecture" } %>
-
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, { class: "select-box", id: "item-prefecture" } %>
+<%= @item.errors[:prefecture_id].present? ? content_tag(:div, @item.errors[:prefecture_id].first, class: 'error-message') : '' %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select :shipping_day_id, ShippingDay.all, :id, :name, { prompt: "---" }, { class: "select-box", id: "item-scheduled-delivery" } %>
+        <%= f.collection_select :shipping_day_id, ShippingDay.all, :id, :name, {}, { class: "select-box", id: "item-scheduled-delivery" } %>
+<%= @item.errors[:shipping_day_id].present? ? content_tag(:div, @item.errors[:shipping_day_id].first, class: 'error-message') : '' %>
       </div>
     </div>
 
@@ -106,6 +108,7 @@
           </div>
           <span class="sell-yen">¥</span>
           <%= f.text_field :price, class: "price-input", id: "item-price", placeholder: "例）300" %>
+<%= @item.errors[:price].present? ? content_tag(:div, @item.errors[:price].first, class: 'error-message') : '' %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
