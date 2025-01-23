@@ -130,42 +130,29 @@
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
  <% if @items.present? %>
-        <% @items.each do |item| %>
+<% @items.each do |item| %>
+  <li class='list'>
+    <%= link_to item_path(item) do %>
+      <div class='item-img-content'>
+        <%# 商品画像またはデフォルト画像を表示 %>
+        <%= image_tag item.image.attached? ? url_for(item.image) : asset_path("item-sample.png"), class: "item-img" %>
 
-
-      <li class='list'>
-        <%= link_to item_path(item) do %>
-        <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <% if item.sold_out? %>
-
+        <%# 売却済み商品の場合、"sold out" を表示 %>
+        <% if item.sold_out? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <% end %>
-
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= "商品名" %>
-          </h3>
-          <div class='item-price'>
-            
-                    <span><%= item.price %>円<br><%= item.sales_fee %>円<br>
-                    <%= item.profit %>円<br><%= item.shipping_fee_status %>
-
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
         <% end %>
-
-      </li>
+      </div>
+      <div class='item-info'>
+        <h3 class='item-name'><%= item.name %></h3>
+        <div class='item-price'>
+          <span><%= item.price %>円</span>
+          <span>配送料: <%= item.shipping_fee_status %></span>
+        </div>
+      </div>
+    <% end %>
+  </li>
 <% end %>
 
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
