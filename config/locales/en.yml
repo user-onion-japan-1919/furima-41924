@@ -40,3 +40,5 @@ ja:
       messages:
         blank: "can't be blank"
         invalid_katakana: "is invalid. Input full-width katakana characters"
+
+        
