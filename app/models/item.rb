@@ -13,9 +13,9 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_fee
-  # belongs_to :prefecture
-  # belongs_to :shipping_day
-  # has_one_attached :image
+  belongs_to :prefecture
+  belongs_to :shipping_day
+  has_one_attached :image
   # has_one :order
 
   # 販売手数料を計算（10%の手数料として設定）
