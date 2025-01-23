@@ -43,34 +43,34 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:price]).to include('は9,999,999以下である必要があります')
     end
 
-    it 'categoryが空だと登録できない' do
-      item = build(:item, category_id: nil)
+    it 'categoryが未選択(1)の場合、登録できない' do
+      item = build(:item, category_id: 1)
       item.valid?
       expect(item.errors[:category_id]).to include("can't be blank")
     end
 
-    it 'conditionが空だと登録できない' do
-      item = build(:item, condition_id: nil)
+    it 'conditionが未選択(1)の場合、登録できない' do
+      item = build(:item, condition_id: 1)
       item.valid?
-      expect(item.errors[:condition_id]).to include("can't be blank") # 修正点
+      expect(item.errors[:condition_id]).to include("can't be blank")
     end
 
-    it 'shipping_feeが空だと登録できない' do
-      item = build(:item, shipping_fee_id: nil)
+    it 'shipping_feeが未選択(1)の場合、登録できない' do
+      item = build(:item, shipping_fee_id: 1)
       item.valid?
-      expect(item.errors[:shipping_fee_id]).to include("can't be blank") # 修正点
+      expect(item.errors[:shipping_fee_id]).to include("can't be blank")
     end
 
-    it 'prefectureが空だと登録できない' do
-      item = build(:item, prefecture_id: nil)
+    it 'prefectureが未選択(1)の場合、登録できない' do
+      item = build(:item, prefecture_id: 1)
       item.valid?
-      expect(item.errors[:prefecture_id]).to include("can't be blank") # 修正点
+      expect(item.errors[:prefecture_id]).to include("can't be blank")
     end
 
-    it 'shipping_dayが空だと登録できない' do
-      item = build(:item, shipping_day_id: nil)
+    it 'shipping_dayが未選択(1)の場合、登録できない' do
+      item = build(:item, shipping_day_id: 1)
       item.valid?
-      expect(item.errors[:shipping_day_id]).to include("can't be blank") # 修正点
+      expect(item.errors[:shipping_day_id]).to include("can't be blank")
     end
   end
 

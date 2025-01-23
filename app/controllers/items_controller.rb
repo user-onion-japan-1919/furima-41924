@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
-  # def index
-  # 全てのアイテムを取得
-  # @items = Item.all
-  # end
+  def index
+    全てのアイテムを取得
+    # @items = Item.all
+  end
 
   def new
     # 新しいアイテムインスタンスを生成

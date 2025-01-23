@@ -17,11 +17,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   has_one_attached :image
   has_one :order
-  # belongs_to :shipping_day
-
-  # belongs_to :user
-  # has_one :order
-  # has_one_attached :image
 
   # 販売手数料を計算（10%の手数料として設定）
   def sales_fee
