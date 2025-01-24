@@ -131,12 +131,12 @@
  <% if @items.present? %>
 <% @items.each do |item| %>
   <li class='list'>
-    <%= link_to "#" do %>
+     <%= link_to item_path(item) do %>
       <div class='item-img-content'>
-        <%# 商品画像またはデフォルト画像を表示 %>
         <%= image_tag item.image.attached? ? url_for(item.image) : asset_path("item-sample.png"), class: "item-img" %>
 
-        <%# 売却済み商品の場合、"sold out" を表示 %>
+        <%# 商品が売れていればsold outを表示しましょう %>
+        <%# if item.sold_out? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -186,9 +186,9 @@
 
 
     </ul>
+
   </div>
   <%# /商品一覧 %>
-
 <%= link_to new_item_path, class: 'purchase-btn' do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>

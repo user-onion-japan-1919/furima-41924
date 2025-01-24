@@ -28,8 +28,11 @@ class Item < ApplicationRecord
     (price - sales_fee).floor # 小数点以下を切り捨て
   end
 
-  # shipping_fee_status メソッドを追加
   def shipping_fee_status
-    shipping_fee.try(:status) # もし status メソッドが shipping_fee モデルにあれば取得
+    shipping_fee.try(:status)
+  end
+
+  def sold?
+    sold_out == true
   end
 end

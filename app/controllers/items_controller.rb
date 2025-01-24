@@ -6,12 +6,10 @@ class ItemsController < ApplicationController
   end
 
   def new
-    # 新しいアイテムインスタンスを生成
     @item = Item.new
   end
 
   def create
-    # 新しいアイテムを作成
     @item = Item.new(item_params)
 
     # アイテムが正常に保存できたらリダイレクト
@@ -22,6 +20,10 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
 
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private

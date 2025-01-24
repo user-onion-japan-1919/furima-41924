@@ -12,9 +12,9 @@ ja:
               blank: "can't be blank"
             price:
               blank: "can't be blank"
-              not_a_number: "is not a number" # 修正部分
-              greater_than_or_equal_to: "は300以上である必要があります" # 修正部分
-              less_than_or_equal_to: "は9,999,999以下である必要があります" # 修正部分
+              not_a_number: "is not a number" 
+              greater_than_or_equal_to: "は300以上である必要があります" 
+              less_than_or_equal_to: "は9,999,999以下である必要があります" 
             category_id:
               blank: "can't be blank"
             condition_id:
@@ -25,3 +25,15 @@ ja:
               blank: "can't be blank"
             shipping_day_id:
               blank: "can't be blank"
+        user:
+          attributes:
+            email:
+              taken: "このメールアドレスはすでに登録されています" # 追記
+  errors:
+    messages:
+      taken: "すでに使用されています" # 追記
+  date:
+    order:
+      - :year
+      - :month
+      - :day
