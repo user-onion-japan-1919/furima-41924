@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:edit, :update, :show]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
@@ -24,6 +24,16 @@ class ItemsController < ApplicationController
       # 保存に失敗した場合は新規作成ページに戻る
       render :new, status: :unprocessable_entity
 
+    end
+  end
+
+  def destroy
+    # ログインユーザーが出品者でなければ削除不可
+    if current_user == @item.user
+      @item.destroy
+      redirect_to items_path, notice: '商品を削除しました。'
+    else
+      redirect_to items_path, alert: '削除できません。権限がありません。'
     end
   end
 
