@@ -24,6 +24,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id]) # 商品IDを元に商品を取得
+  end
+
   private
 
   def item_params
