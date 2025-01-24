@@ -1,0 +1,17 @@
+<h2>購入情報の入力</h2>
+
+<%= form_with model: @order, local: true do |f| %>
+  <div>
+    <label for="address">住所</label>
+    <%= f.text_field :address, id: 'address', placeholder: '住所を入力してください' %>
+  </div>
+
+  <div>
+    <label for="payment_method">支払い方法</label>
+    <%= f.select :payment_method, options_for_select(['クレジットカード', 'コンビニ払い', '銀行振込']), id: 'payment_method' %>
+  </div>
+
+  <div>
+    <%= f.submit '購入', class: 'purchase-btn' %>
+  </div>
+<% end %>
