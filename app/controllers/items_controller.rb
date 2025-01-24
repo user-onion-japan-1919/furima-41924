@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:edit, :update, :show]
+  before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -49,5 +50,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_if_not_owner
+    redirect_to root_path, alert: '権限がありません' unless current_user == @item.user
   end
 end
