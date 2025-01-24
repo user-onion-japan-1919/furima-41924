@@ -81,6 +81,7 @@
       <%= raw sprintf(
                   f.date_select(
                     :date_of_birth,
+                     order: [:year, :month, :day],
                     class:'select-birth',
                     id:"birth-date",
                     use_month_numbers: true,
