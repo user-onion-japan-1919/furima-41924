@@ -6,12 +6,10 @@ class ItemsController < ApplicationController
   end
 
   def new
-    # 新しいアイテムインスタンスを生成
     @item = Item.new
   end
 
   def create
-    # 新しいアイテムを作成
     @item = Item.new(item_params)
 
     # アイテムが正常に保存できたらリダイレクト
@@ -25,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id]) # 商品IDを元に商品を取得
+    @item = Item.find(params[:id])
   end
 
   private
