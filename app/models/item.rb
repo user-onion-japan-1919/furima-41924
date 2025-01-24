@@ -32,4 +32,8 @@ class Item < ApplicationRecord
   def shipping_fee_status
     shipping_fee.try(:status) # もし status メソッドが shipping_fee モデルにあれば取得
   end
+
+  def sold?
+    sold_out == true
+  end
 end
