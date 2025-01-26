@@ -13,24 +13,40 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def index
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    @order = Order.new
+  end
+
   def create
     @item = Item.find(params[:item_id])
     @order = Order.new(order_params)
     @order.user = current_user
     @order.item = @item
 
-    if @order.save
-      # 購入完了処理
-      @item.update(sold_out: true) # 商品の売却済み状態を更新
-      redirect_to order_path(@order), notice: '購入が完了しました。'
+    if @order.valid?
+      pay_item
+      @order.save
+      redirect_to root_path
+
     else
-      render :new
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+      render :new, index, status: :unprocessable_entity
     end
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:address, :payment_method)
+    params.require(:order).permit(:price, :address, :payment_method)
+  end
+
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: order_params[:price],  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency: 'jpy' # 通貨の種類（日本円）
+    )
   end
 end

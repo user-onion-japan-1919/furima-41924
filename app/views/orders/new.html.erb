@@ -1,6 +1,48 @@
-<h2>購入情報の入力</h2>
 
 <%= form_with model: @order, local: true do |f| %>
+
+  <!-- 商品情報表示 -->
+  <div class="product-info">
+
+    <p><%= @item.name %></p>
+
+    <% if @item.image.attached? %>
+      <%= image_tag @item.image, alt: @item.name, class: 'product-image' %>
+
+    <% else %>
+      <p>画像がありません</p>
+    <% end %>
+
+    <p><%= @item.price %>円</p>
+
+    <p><%= @item.shipping_fee.name %></p>
+
+  </div>
+
+  <!-- 購入者情報フォーム -->
+  <div class="order-form">
+    <%= f.label :address, "配送先住所" %>
+    <%= f.text_field :address, placeholder: "住所を入力してください" %>
+
+    <%= f.label :payment_method, "支払い方法" %>
+    <%= f.select :payment_method, ["クレジットカード", "銀行振込", "代金引換"], prompt: "支払い方法を選択" %>
+
+    <%= f.submit "購入する", class: "purchase-btn" %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div>
     <label for="address">住所</label>
     <%= f.text_field :address, id: 'address', placeholder: '住所を入力してください' %>
