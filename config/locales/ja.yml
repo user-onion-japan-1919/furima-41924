@@ -37,3 +37,7 @@ ja:
       - :year
       - :month
       - :day
+  devise:
+    failure:
+      user:
+        invalid: "Invalid Email or password."
