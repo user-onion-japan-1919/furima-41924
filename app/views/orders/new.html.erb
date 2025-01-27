@@ -10,6 +10,26 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
+
+   <%# エラーメッセージを表示 %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> が発生しました:</h2>
+        <ul>
+          <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%# /エラーメッセージを表示 %>
+
+
+
+
+
+
+
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
       <%= image_tag @item.image, class: 'buy-item-img' %>
@@ -93,7 +113,7 @@
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, [], :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
