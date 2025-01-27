@@ -1,6 +1,6 @@
 
-<%= form_with model: @order, local: true do |f| %>
-
+<%= form_with model: @order_address, url: orders_path, local: true do |f| %>
+ <%= render 'error_messages', model: @order_address %>
 
 
 <%= render "shared/second-header"%>

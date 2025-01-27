@@ -9,6 +9,7 @@ const pay = () => {
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
+  
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
     console.log("フォーム送信時にイベント発火")

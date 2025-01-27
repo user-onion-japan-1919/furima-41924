@@ -28,10 +28,12 @@ ja:
         user:
           attributes:
             email:
-              taken: "このメールアドレスはすでに登録されています" # 追記
+              taken: "has already been taken"
+              invalid: 'is invalid'
   errors:
     messages:
       taken: "すでに使用されています" # 追記
+      confirmation: "doesn't match Password"
   date:
     order:
       - :year

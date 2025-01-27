@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :item
-  has_one :address
+  has_one :address, dependent: :destroy
 
   # ステータス管理：購入が完了したかどうかなど
   enum status: { pending: 0, completed: 1, canceled: 2 }
