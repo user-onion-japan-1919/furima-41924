@@ -12,16 +12,16 @@
     </h1>
 
    <%# エラーメッセージを表示 %>
-    <% if @order.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@order.errors.count, "error") %> が発生しました:</h2>
-        <ul>
-          <% @order.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+   <% if @order_address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order_address.errors.count, "error") %> が発生しました:</h2>
+    <ul>
+      <% @order_address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
     <%# /エラーメッセージを表示 %>
 
 
