@@ -1,5 +1,5 @@
 
-<%= form_with model: @order_address, url: orders_path, local: true do |f| %>
+<%= form_with model: @order, url: item_orders_path(@item), method: :post do |f| %>
  <%= render 'error_messages', model: @order_address %>
 
 

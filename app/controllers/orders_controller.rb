@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :check_restrictions
 
   def new
+    @item = Item.find(params[:item_id]) # 商品情報を取得
     @order_address = OrderAddress.new
   end
 

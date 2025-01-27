@@ -31,14 +31,14 @@
 
 en:
   hello: "Hello world"
-ja:
-  activerecord:
-    attributes:
-      user:
-        last_name_furigana: "Last name furigana"
-    errors:
-      messages:
-        blank: "can't be blank"
-        invalid_katakana: "is invalid. Input full-width katakana characters"
+#ja:
+  # activerecord:
+  #   attributes:
+  #     user:
+  #       last_name_furigana: "Last name furigana"
+  #   errors:
+  #     messages:
+  #       blank: "can't be blank"
+  #       invalid_katakana: "is invalid. Input full-width katakana characters"
 
         
