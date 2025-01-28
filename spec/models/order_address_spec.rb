@@ -5,8 +5,8 @@ RSpec.describe OrderAddress, type: :model do
     before do
       user = FactoryBot.create(:user) # userを作成
       item = FactoryBot.create(:item) # itemを作成
-      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id) # 必要な値を含めてインスタンス生成
-    end
+      @order_address = FactoryBo
+t.build(:order_address, user_id: user.id, item_id: item.id) # 必要な値を含めてインスタンス生成    end
 
     context '内容に問題がない場合' do
       it '全ての値が正しく入力されていれば保存できる' do
