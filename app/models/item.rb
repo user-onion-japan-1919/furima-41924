@@ -32,7 +32,7 @@ class Item < ApplicationRecord
     shipping_fee.try(:status)
   end
 
-  def sold?
-    sold_out == true
-  end
+  # def sold?
+  # sold_out == true
+  # end
 end

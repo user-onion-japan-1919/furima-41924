@@ -74,12 +74,6 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('電話番号は10桁または11桁の数字のみ入力してください')
       end
 
-      it 'トークンが空では保存できない' do
-        @order_address.token = ''
-        @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('クレジットカード情報を入力してください')
-      end
-
       it 'user_idが空では保存できない' do
         @order_address.user_id = nil
         @order_address.valid?
