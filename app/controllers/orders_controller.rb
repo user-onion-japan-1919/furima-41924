@@ -4,15 +4,15 @@ class OrdersController < ApplicationController
   before_action :check_restrictions
 
   def new
-    @item = Item.find(params[:item_id]) # 商品情報を取得
     @order_address = OrderAddress.new
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
+      pay_item
       @order_address.save
-      redirect_to root_path
+      redirect_to root_path, notice: '購入が完了しました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
       )
     rescue Payjp::PayjpError => e
       Rails.logger.error("PayJPエラー: #{e.message}")
-      redirect_to new_order_path(@item), alert: '決済処理に失敗しました。再度お試しください。'
+      redirect_to new_item_order_path(@item), alert: '決済処理に失敗しました。再度お試しください。'
     end
   end
 
