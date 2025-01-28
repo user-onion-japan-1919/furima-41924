@@ -1,7 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city_ward_town_village,
-                :street_address, :building_name, :phone_number
+                :street_address, :building_name, :phone_number, :token
 
   # バリデーション
   with_options presence: true do
@@ -12,6 +12,7 @@ class OrderAddress
     validates :city_ward_town_village
     validates :street_address
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :token
   end
 
   def save
