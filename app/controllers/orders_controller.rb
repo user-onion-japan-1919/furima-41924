@@ -46,6 +46,8 @@ class OrdersController < ApplicationController
 
   def check_restrictions
     redirect_to root_path, alert: '自分が出品した商品は購入できません。' if @item.user_id == current_user.id
-    # redirect_to root_path, alert: 'この商品はすでに売却済みです。' if @item.sold_out
+
+    # 売却済み商品の購入ページにアクセスできない
+    redirect_to root_path, alert: '売却済みの商品は購入できません。' if @item.order.present?
   end
 end
