@@ -34,13 +34,13 @@ RSpec.describe Item, type: :model do
     it 'priceが300未満だと登録できない' do
       item = build(:item, price: 299)
       item.valid?
-      expect(item.errors[:price]).to include('は300以上である必要があります')
+      expect(item.errors[:price]).to include('must be greater than or equal to 300')
     end
 
     it 'priceが9,999,999を超えると登録できない' do
       item = build(:item, price: 10_000_000)
       item.valid?
-      expect(item.errors[:price]).to include('は9,999,999以下である必要があります')
+      expect(item.errors[:price]).to include('must be less than or equal to 9999999')
     end
 
     it 'categoryが未選択(1)の場合、登録できない' do

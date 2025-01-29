@@ -1,14 +1,14 @@
 FactoryBot.define do
   factory :item do
-    name { 'Sample Item' }
-    description { 'This is a sample item description.' }
-    price { 1000 }
-    category { create(:category) }
-    condition { create(:condition) }
-    shipping_fee { create(:shipping_fee) }
-    prefecture { create(:prefecture) }
-    shipping_day { create(:shipping_day) }
-    user { association :user } # associationを使ってuserを関連付ける
+    name { 'テスト商品' }
+    description { '商品の説明' }
+    price { 3000 }
+    category_id { 2 }
+    condition_id { 2 }
+    shipping_fee_id { 2 }
+    prefecture_id { 2 }
+    shipping_day_id { 2 }
+    association :user
 
     after(:build) do |message|
       message.image.attach(io: File.open('public/images/sample1.png'), filename: 'sample1.png')

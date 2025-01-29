@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
   has_one_attached :image
-  # has_one :order
+  has_one :order
 
   # 販売手数料を計算（10%の手数料として設定）
   def sales_fee
@@ -30,9 +30,5 @@ class Item < ApplicationRecord
 
   def shipping_fee_status
     shipping_fee.try(:status)
-  end
-
-  def sold?
-    sold_out == true
   end
 end
