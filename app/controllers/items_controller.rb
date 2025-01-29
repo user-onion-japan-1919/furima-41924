@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
-  before_action :redirect_if_not_owner, only: [:edit, :update]
+  before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -60,7 +60,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def redirect_if_not_owner
-    redirect_to root_path, alert: '権限がありません' unless current_user == @item.user
+  def redirect_if_sold_out
+    @item = Item.find(params[:id])
+    return unless @item.order.present?
+
+    flash[:alert] = '売却済み商品の編集はできません'
+    redirect_to root_path
   end
 end
