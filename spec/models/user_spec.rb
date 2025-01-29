@@ -13,9 +13,9 @@ RSpec.describe User, type: :model do
 
     context '新規登録できない場合' do
       it 'nicknameが空では登録できない' do
-        user.nickname = ''
+        user.name = ''
         user.valid?
-        expect(user.errors.full_messages).to include("Nickname can't be blank")
+        expect(user.errors.full_messages).to include("Name can't be blank")
       end
 
       it 'emailが空では登録できない' do
