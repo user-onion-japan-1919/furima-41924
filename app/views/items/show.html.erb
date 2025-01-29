@@ -24,8 +24,8 @@
       </span>
     </div>
 
-    
- <% if user_signed_in? %>
+     <%# 売却済みでない場合のみボタンを表示 %>
+    <% if user_signed_in? && @item.order.blank? %>
   <% if current_user == @item.user %>
         <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
