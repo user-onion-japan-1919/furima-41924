@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :orders
 
   # ニックネーム
-  validates :nickname, presence: true
+  validates :name, presence: true
 
   # パスワード (英数字混合)
   validates :password,
