@@ -12,7 +12,7 @@ class OrderAddress
     validates :city_ward_town_village
     validates :street_address
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
-    validates :token
+    validates :token, presence: true
   end
 
   def save

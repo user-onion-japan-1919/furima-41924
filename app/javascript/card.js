@@ -9,11 +9,8 @@ const pay = () => {
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
-  
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
-    console.log("フォーム送信時にイベント発火")
-
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
       } else {
@@ -21,14 +18,17 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        debugger;
       }
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
+      document.getElementById("charge-form").submit();
     });
     e.preventDefault();
   });
 };
+
 
 window.addEventListener("turbo:load", pay);
 window.addEventListener("turbo:render", pay);
