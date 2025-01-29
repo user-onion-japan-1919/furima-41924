@@ -135,7 +135,6 @@
       <div class='item-img-content'>
         <%= image_tag item.image.attached? ? url_for(item.image) : asset_path("item-sample.png"), class: "item-img" %>
 
-        <%# 商品が売れていればsold outを表示しましょう %>
          <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
