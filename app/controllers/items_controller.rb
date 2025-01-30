@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :redirect_if_sold_out, only: [:edit, :update]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -67,4 +68,11 @@ class ItemsController < ApplicationController
     flash[:alert] = '売却済み商品の編集はできません'
     redirect_to root_path
   end
+end
+
+# ✅ 他のユーザーが編集ページにアクセスしようとしたらトップページにリダイレクト
+def check_owner
+  return if current_user == @item.user
+
+  redirect_to root_path, alert: '編集権限がありません。'
 end
